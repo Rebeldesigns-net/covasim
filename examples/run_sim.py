@@ -25,7 +25,7 @@ fig_path = f'{basename}.png'
 # Configure the sim -- can also just use a normal dictionary
 pars = sc.objdict(
     n           = 20000, # Population size
-    n_infected  = 1,    # Number of initial infections
+    n_seed  = 1,    # Number of initial infections
     n_days      = 180,   # Number of days to simulate
     prog_by_age = 1,    # Use age-specific mortality etc.
     usepopdata  = 1,    # Use realistic population structure (requires synthpops)

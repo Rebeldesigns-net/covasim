@@ -91,7 +91,7 @@ class SimulationParameterTests(CovaSimTest):
             self.run_sim(negative_infected_count)
             pass
         error_message = str(context.exception)
-        self.assertIn('n_infected', error_message)
+        self.assertIn('n_seed', error_message)
         pass
 
     def test_population_scaling(self):

@@ -36,7 +36,7 @@ def test_pop_options(doplot=False): # If being run via pytest, turn off
 
     basepars = {
         'n': 3000,
-        'n_infected': 10,
+        'n_seed': 10,
         'contacts': 20,
         'n_days': 90
         }
@@ -69,7 +69,7 @@ def test_interventions(doplot=False): # If being run via pytest, turn off
 
     basepars = {
         'n': 10000,
-        'n_infected': 100,
+        'n_seed': 100,
         'n_days': 60,
         'usepopdata': popchoice,
         }
@@ -116,7 +116,7 @@ def test_simple_interv(doplot=False): # If being run via pytest, turn off
 
     basepars = {
         'n':           2000,
-        'n_infected':  100,
+        'n_seed':  100,
         'n_days':      60,
         'interv_func': close_schools,
         'usepopdata':  'bayesian',

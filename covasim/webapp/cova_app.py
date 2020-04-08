@@ -51,7 +51,7 @@ def get_defaults(region=None, merge=False):
             'Seattle': 45,
             # 'Wuhan': 90,
         },
-        'n_infected': {
+        'n_seed': {
             'Example': 100,
             'Seattle': 4,
             # 'Wuhan': 10,
@@ -71,7 +71,7 @@ def get_defaults(region=None, merge=False):
     sim_pars = {}
     sim_pars['scale']       = dict(best=1,    min=1, max=1e6,      name='Population scale factor',    tip='Multiplier for results (to approximate large populations)')
     sim_pars['n']           = dict(best=5000, min=1, max=max_pop,  name='Population size',            tip='Number of agents simulated in the model')
-    sim_pars['n_infected']  = dict(best=10,   min=1, max=max_pop,  name='Initial infections',         tip='Number of initial seed infections in the model')
+    sim_pars['n_seed']  = dict(best=10,   min=1, max=max_pop,  name='Initial infections',         tip='Number of initial seed infections in the model')
     sim_pars['n_days']      = dict(best=90,   min=1, max=max_days, name='Number of days to simulate', tip='Number of days to run the simulation for')
     sim_pars['web_int_day'] = dict(best=20,   min=0, max=max_days, name='Intervention start day',     tip='Start day of the intervention (for no intervention, set start day to 0 and effectiveness to 0)')
     sim_pars['web_int_eff'] = dict(best=0.9,  min=0, max=1.0,      name='Intervention effectiveness', tip='Fractional reduction in infectiousness due to intervention')
@@ -310,7 +310,7 @@ def get_individual_states(sim, order=True):
          'value': 4
          },
         {'name': 'Dead',
-         'quantity': 'date_died',
+         'quantity': 'date_dead',
          'color': '#000000',
          'value': 5
          },

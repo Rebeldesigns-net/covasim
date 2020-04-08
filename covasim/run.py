@@ -424,7 +424,7 @@ def single_run(sim, ind=0, noise=0.0, noisepar=None, verbose=None, run_args=None
         noisepar (string): the name of the parameter to add noise to
         verbose (int): detail to print
         run_args (dict): arguments passed to sim.run()
-        sim_args (dict): extra parameters to pass to the sim, e.g. 'n_infected'
+        sim_args (dict): extra parameters to pass to the sim, e.g. 'n_seed'
         kwargs (dict): also passed to the sim
 
     Returns:

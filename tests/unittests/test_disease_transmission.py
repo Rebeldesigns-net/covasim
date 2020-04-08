@@ -17,6 +17,7 @@ class DiseaseTransmissionTests(CovaSimTest):
 
     def setUp(self):
         super().setUp()
+        self.is_debugging = True
         pass
 
     def tearDown(self):
@@ -37,7 +38,7 @@ class DiseaseTransmissionTests(CovaSimTest):
             TestProperties.ResultsDataKeys.exposed_at_timestep
         )
         prev_exposed = exposed_today_channel[0]
-        self.assertEqual(prev_exposed, Hightrans.n_infected,
+        self.assertEqual(prev_exposed, Hightrans.n_seed,
                          msg="Make sure we have some initial infections")
         for t in range(1, len(exposed_today_channel)):
             today_exposed = exposed_today_channel[t]
@@ -71,6 +72,7 @@ class DiseaseTransmissionTests(CovaSimTest):
         Test that with zero contacts, no transmission
         depends on test_beta_scaling
         """
+        self.is_debugging = True
         self.set_smallpop_hightransmission()
         beta_zero = {
             TKeys.contacts_per_agent: 0
@@ -80,8 +82,8 @@ class DiseaseTransmissionTests(CovaSimTest):
             TestProperties.ResultsDataKeys.exposed_at_timestep
         )
         prev_exposed = exposed_today_channel[0]
-        self.assertEqual(prev_exposed, Hightrans.n_infected,
-                         msg="Make sure we have some initial infections")
+        # self.assertEqual(prev_exposed, Hightrans.n_seed,
+        #                  msg="Make sure we have some initial infections")
         for t in range(1, len(exposed_today_channel)):
             today_exposed = exposed_today_channel[t]
             self.assertLessEqual(today_exposed, prev_exposed,

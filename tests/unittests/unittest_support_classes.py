@@ -37,7 +37,7 @@ class TestProperties:
         class SimulationKeys:
             number_agents = 'n'
             population_scaling_factor = 'scale'
-            initial_infected_count = 'n_infected'
+            initial_infected_count = 'n_seed'
             start_day = 'start_day'
             number_simulated_days = 'n_days'
             random_seed = 'seed'
@@ -103,13 +103,13 @@ class TestProperties:
     class SpecializedSimulations:
         class Microsim:
             n = 10
-            n_infected = 1
+            n_seed = 1
             contacts = 2
             n_days = 10
             pass
         class Hightransmission:
             n = 500
-            n_infected = 10
+            n_seed = 10
             n_days = 30
             contacts = 3
             beta = 0.4
@@ -245,7 +245,7 @@ class CovaSimTest(unittest.TestCase):
         Micro = TestProperties.SpecializedSimulations.Microsim
         microsim_parameters = {
             Simkeys.number_agents : Micro.n,
-            Simkeys.initial_infected_count: Micro.n_infected,
+            Simkeys.initial_infected_count: Micro.n_seed,
             Simkeys.number_simulated_days: Micro.n_days,
             Transkeys.contacts_per_agent: Micro.contacts
         }
@@ -368,7 +368,7 @@ class CovaSimTest(unittest.TestCase):
         Hightrans = TestProperties.SpecializedSimulations.Hightransmission
         hightrans_parameters = {
             Simkeys.number_agents : Hightrans.n,
-            Simkeys.initial_infected_count: Hightrans.n_infected,
+            Simkeys.initial_infected_count: Hightrans.n_seed,
             Simkeys.number_simulated_days: Hightrans.n_days,
             Transkeys.contacts_per_agent: Hightrans.contacts,
             Transkeys.beta : Hightrans.beta
@@ -410,7 +410,7 @@ class TestSupportTests(CovaSimTest):
         self.assertEqual(len(result_data[resultKeys.recovered_at_timestep]),
                          microsimParams.n + 1)
         self.assertEqual(result_data[resultKeys.exposed_at_timestep][0],
-                         microsimParams.n_infected)
+                         microsimParams.n_seed)
         pass
 
     def test_everyone_infected(self):

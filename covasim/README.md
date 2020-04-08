@@ -5,7 +5,7 @@ This file describes the expected behavior of each parameter in the model. Note: 
 ## Simulation parameters
 * `scale`      = Multiplicative scale for results. Test: run 2 sims, set to 10, `sim.results['cum_exposed']` in 2nd sim should be 10x higher than first.
 * `n`          = Nmber of people in the simulation. Test: `len(sim.people)` should equal this number.
-* `n_infected` = Initial number of people infected. Test: if 0, there should be no infections; if equals `n`, should be no _new_ infections.
+* `n_seed` = Initial number of people infected. Test: if 0, there should be no infections; if equals `n`, should be no _new_ infections.
 * `start_day`  = The calendar date of the start day of the simulation.
 * `n_days`     = The number of days to simulate. Test: `len(sim.results['t.values'])` should equal this.
 * `seed`       = Random seed for the simulation. Test: two simulations with the same seed should produce identical results _except for_ person UIDs; otherwise, different.
