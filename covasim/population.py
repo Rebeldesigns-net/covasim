@@ -114,16 +114,22 @@ class Population(sc.prettyobj):
         return self
 
     @classmethod
-    def synthpops(cls, pars, n_people=5000, n_random_contacts: int = 20, betas=None):
+    def synthpops(cls, pars, n_people=5000, n_random_contacts: int = 20, betas=None, popfile=None, *args, **kwargs):
         """
         Construct network with microstructure using Synthpops
 
+        This function has two workflows
+
+        - Generate a new population. In this case, the `n_people` is used, and args/kwargs are passed to `synthpops.make_population()`
+        - Load an existing population. In this case, `popfile` is used, and args/kwargs are passed to `sc.loadobj()`
+
         Args:
             pars: Covasim parameters (e.g. output from `covasim.make_pars()`) used when initializing people
-            n_people: Number of people
+            n_people: Number of people to use when generating new population. Only used if `popfile` is not set
             n_random_contacts: Number of random community contacts each day
             beta: Baseline beta value
             betas: Optionally specify dict with relative beta values for each contact layer
+            popfile: Optionally specify the name of a file containing a popdict produced by `sp.make_population`. If specified, this will overwrite `n_people`
 
         Returns: A Population instance
 
@@ -132,8 +138,13 @@ class Population(sc.prettyobj):
         if betas is None:
             betas = {'H': 1.7, 'S': 0.8, 'W': 0.8, 'R': 0.3}  # Per-population beta weights; relative
 
-        import synthpops as sp  # Optional import
-        population = sp.make_population(n_people)
+        if popfile is None:
+            import synthpops as sp  # Optional import
+            population = sp.make_population(n_people, *args, **kwargs)
+        else:
+            filepath = sc.makefilepath(filename=popfile, *args, **kwargs)
+            population = sc.loadobj(filepath)
+            n_people = len(population)
 
         self = cls()
 
